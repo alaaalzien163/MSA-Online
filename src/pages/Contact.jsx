@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { contactLinks } from '../utils/contactLinks.js'
+import { contactLinks, whatsappLinkWithMessage } from '../utils/contactLinks.js'
 import { cvBenefits } from '../data/cv.js'
 import { useLanguage } from '../context/language-store.js'
 import { Icon } from '../components/common/icons.jsx'
@@ -9,19 +9,28 @@ import { Icon } from '../components/common/icons.jsx'
  *
  * Explains MSA Online's CV support, lists benefits, and provides contact CTAs
  * (WhatsApp, Instagram, Email). Text is translated via the language helper;
- * contact hrefs come from the centralized config. No backend/auth/database.
+ * contact hrefs come from the centralized config. The primary WhatsApp action
+ * opens the chat with a pre-written CV request. No backend/auth/database.
  */
-
-// Channel metadata: href + icon + priority. Labels are translated at render.
-const CHANNELS = [
-  { key: 'whatsapp', href: contactLinks.whatsapp, icon: 'whatsapp', external: true, primary: true },
-  { key: 'instagram', href: contactLinks.instagram, icon: 'instagram', external: true },
-  { key: 'email', href: contactLinks.email, icon: 'mail', external: false },
-].filter((c) => Boolean(c.href))
 
 function Contact() {
   const reduceMotion = useReducedMotion()
   const { t } = useLanguage()
+
+  // Channel metadata: href + icon + priority. Labels are translated at render.
+  // The WhatsApp link is built per-language so the pre-filled message matches
+  // the visitor's chosen language.
+  const channels = [
+    {
+      key: 'whatsapp',
+      href: whatsappLinkWithMessage(t('whatsapp.cvMessage')),
+      icon: 'whatsapp',
+      external: true,
+      primary: true,
+    },
+    { key: 'instagram', href: contactLinks.instagram, icon: 'instagram', external: true },
+    { key: 'email', href: contactLinks.email, icon: 'mail', external: false },
+  ].filter((c) => Boolean(c.href))
 
   const externalProps = (external) =>
     external ? { target: '_blank', rel: 'noopener noreferrer' } : {}
@@ -119,7 +128,7 @@ function Contact() {
           {/* Contact CTAs — one balanced row on tablet/desktop, wraps on small
               mobile. Grid is direction-aware (RTL/LTR) automatically. */}
           <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {CHANNELS.map((channel) => {
+            {channels.map((channel) => {
               const isPrimary = Boolean(channel.primary)
               const label = isPrimary
                 ? `${t('cv.messageUsOn')} ${t(`channels.${channel.key}`)}`

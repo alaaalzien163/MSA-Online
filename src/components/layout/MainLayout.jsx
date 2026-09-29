@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import Navbar from './Navbar.jsx'
 import Footer from './Footer.jsx'
+import FloatingWhatsApp from '../common/FloatingWhatsApp.jsx'
 import { useScrollToHash } from '../../hooks/useScrollToHash.js'
 import { useLanguage } from '../../context/language-store.js'
 
@@ -8,8 +9,9 @@ import { useLanguage } from '../../context/language-store.js'
  * Main application layout.
  *
  * Composes the navigation area, main content area (rendered via <Outlet />),
- * and footer area. Handles in-page hash navigation and provides a translated,
- * RTL-aware skip link for keyboard users.
+ * footer area, and the persistent floating WhatsApp action. Handles in-page
+ * hash navigation and provides a translated, RTL-aware skip link for keyboard
+ * users.
  */
 function MainLayout() {
   useScrollToHash()
@@ -33,6 +35,7 @@ function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   )
 }

@@ -11,6 +11,7 @@ export const NAV_LINKS = [
   { id: 'home', tKey: 'home', href: '/#home' },
   { id: 'about', tKey: 'about', href: '/#about' },
   { id: 'jobs', tKey: 'jobs', href: '/#jobs' },
+  { id: 'employers', tKey: 'employers', href: '/#employers' },
   { id: 'build-cv', tKey: 'buildCv', href: '/contact', cta: true },
   // Kept for the footer quick links, but hidden from the navbar (both the
   // desktop bar and the mobile menu). /contact stays reachable via "Build Your CV".

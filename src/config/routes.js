@@ -6,7 +6,11 @@
  */
 export const ROUTES = {
   home: '/',
+  about: '/about',
   contact: '/contact',
+  privacy: '/privacy',
+  terms: '/terms',
+  jobPostingPolicy: '/job-posting-policy',
 }
 
 export default ROUTES

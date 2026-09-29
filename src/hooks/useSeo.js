@@ -10,9 +10,19 @@ import { applyMetadata } from '../utils/seo.js'
  */
 const ROUTE_SEO = {
   [ROUTES.home]: { title: 'seo.title', description: 'seo.description' },
+  [ROUTES.about]: { title: 'seo.aboutTitle', description: 'seo.aboutDescription' },
   [ROUTES.contact]: {
     title: 'seo.contactTitle',
     description: 'seo.contactDescription',
+  },
+  [ROUTES.privacy]: {
+    title: 'seo.privacyTitle',
+    description: 'seo.privacyDescription',
+  },
+  [ROUTES.terms]: { title: 'seo.termsTitle', description: 'seo.termsDescription' },
+  [ROUTES.jobPostingPolicy]: {
+    title: 'seo.jobPostingPolicyTitle',
+    description: 'seo.jobPostingPolicyDescription',
   },
 }
 

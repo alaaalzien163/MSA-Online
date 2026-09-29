@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import { siteConfig } from '../../config/site.js'
 import { FOOTER_LINKS } from '../../config/navigation.js'
-import { contactLinks } from '../../utils/contactLinks.js'
+import { ROUTES } from '../../config/routes.js'
+import { contactLinks, whatsappLinkWithMessage } from '../../utils/contactLinks.js'
 import { useLanguage } from '../../context/language-store.js'
 import { Icon } from '../common/icons.jsx'
 import logo, { brandLogoSrcSet, brandLogoWidth, brandLogoHeight } from '../../utils/logo.js'
@@ -25,16 +26,32 @@ const CONTACT_CHANNELS = [
   { key: 'email', href: contactLinks.email, icon: 'mail', isExternal: false },
 ].filter((item) => Boolean(item.href))
 
+// Standalone pages: About Us plus the (draft) legal documents.
+const PAGE_LINKS = [
+  { key: 'about', href: ROUTES.about, tKey: 'aboutPage.label' },
+  { key: 'privacy', href: ROUTES.privacy, tKey: 'legal.privacy.title' },
+  { key: 'terms', href: ROUTES.terms, tKey: 'legal.terms.title' },
+  { key: 'jobPostingPolicy', href: ROUTES.jobPostingPolicy, tKey: 'legal.jobPostingPolicy.title' },
+]
+
 function Footer() {
   const { pathname } = useLocation()
   const { t } = useLanguage()
+
+  // The WhatsApp channel carries a pre-written, localised message so the visitor
+  // only has to press send. Built here (not at module scope) to follow language.
+  const channels = CONTACT_CHANNELS.map((item) =>
+    item.key === 'whatsapp'
+      ? { ...item, href: whatsappLinkWithMessage(t('whatsapp.generalMessage')) }
+      : item,
+  )
 
   const linkClass =
     'rounded text-sm text-content transition-colors hover:text-accent outline-none focus-visible:text-accent focus-visible:ring-2 focus-visible:ring-accent'
 
   return (
     <footer className="border-t border-border bg-surface-2">
-      <div className="mx-auto max-w-6xl px-4 py-12">
+      <div className="mx-auto max-w-6xl px-4 pt-12 pb-24">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Branding */}
           <div>
@@ -58,9 +75,9 @@ function Footer() {
             </p>
 
             {/* Contact channel icons */}
-            {CONTACT_CHANNELS.length > 0 && (
+            {channels.length > 0 && (
               <ul className="mt-5 flex flex-wrap items-center gap-2">
-                {CONTACT_CHANNELS.map((item) => (
+                {channels.map((item) => (
                   <li key={item.key}>
                     <a
                       href={item.href}
@@ -121,7 +138,7 @@ function Footer() {
               {t('footer.contact')}
             </h2>
             <ul className="mt-4 flex flex-col gap-1">
-              {CONTACT_CHANNELS.map((item) => (
+              {channels.map((item) => (
                 <li key={item.key}>
                   <a
                     href={item.href}
@@ -142,6 +159,29 @@ function Footer() {
               ))}
             </ul>
           </div>
+
+          {/* Pages: About Us + legal */}
+          <nav aria-labelledby="footer-pages-heading">
+            <h2
+              id="footer-pages-heading"
+              className="text-sm font-semibold uppercase tracking-wider text-heading"
+            >
+              {t('footer.pages')}
+            </h2>
+            <ul className="mt-4 flex flex-col gap-1">
+              {PAGE_LINKS.map((link) => (
+                <li key={link.key}>
+                  <Link
+                    to={link.href}
+                    aria-current={pathname === link.href ? 'page' : undefined}
+                    className={`${linkClass} inline-block py-1.5`}
+                  >
+                    {t(link.tKey)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
         {/* Copyright */}

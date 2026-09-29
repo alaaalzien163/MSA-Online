@@ -1,6 +1,7 @@
 import Hero from '../components/sections/Hero.jsx'
 import About from '../components/sections/About.jsx'
 import Jobs from '../components/sections/Jobs.jsx'
+import Employers from '../components/sections/Employers.jsx'
 
 /**
  * Home page.
@@ -14,6 +15,7 @@ function Home() {
       <Hero />
       <About />
       <Jobs />
+      <Employers />
     </>
   )
 }

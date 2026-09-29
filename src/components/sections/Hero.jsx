@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { heroCtas } from '../../data/home.js'
+import { heroImage, hasHeroImage } from '../../config/heroImage.js'
 import { useLanguage } from '../../context/language-store.js'
-import logo, { brandLogoSrcSet, brandLogoWidth, brandLogoHeight } from '../../utils/logo.js'
+import HeroIllustration from './HeroIllustration.jsx'
 
 /**
  * Hero section (Home / #home).
  *
  * Mobile-first, two-column on larger screens. Text is translated via the
- * language helper; the MSA Online logo (6.png) is presented in a branded panel
- * as the hero visual. RTL-aware (logical text alignment).
+ * language helper. The visual is a representative recruitment image — a real
+ * approved photo when configured (src/config/heroImage.js), otherwise a
+ * brand-coloured illustration. The MSA Online logo intentionally does NOT
+ * appear here (it lives in the navbar, footer, and splash) so it no longer
+ * dominates the homepage. RTL-aware (logical text alignment / column order).
  */
 function Hero() {
   const reduceMotion = useReducedMotion()
@@ -67,6 +71,14 @@ function Hero() {
             {t('hero.description')}
           </motion.p>
 
+          {/* Who the platform is for — job seekers and business owners. */}
+          <motion.p
+            variants={item}
+            className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-content/80 lg:mx-0"
+          >
+            {t('hero.audience')}
+          </motion.p>
+
           <motion.div
             variants={item}
             className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start"
@@ -86,27 +98,31 @@ function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Brand visual */}
+        {/* Recruitment visual — real approved photo when configured, otherwise
+            a brand illustration. Placed after the text on mobile (content-first
+            hierarchy) and on the trailing side on desktop. */}
         <motion.div
           initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: reduceMotion ? 0.3 : 0.7, ease: 'easeOut' }}
-          className="order-first lg:order-last"
+          className="lg:order-last"
         >
-          <div className="mx-auto flex max-w-lg items-center justify-center rounded-3xl border border-border bg-surface-2 p-8 sm:p-12">
+          {hasHeroImage ? (
             <img
-              src={logo}
-              srcSet={brandLogoSrcSet}
-              sizes="384px"
-              alt={t('common.logoAlt')}
-              className="h-auto w-full max-w-sm"
+              src={heroImage.src}
+              srcSet={heroImage.srcSet ?? undefined}
+              sizes={heroImage.srcSet ? heroImage.sizes : undefined}
+              alt={t('hero.imageAlt')}
+              className="mx-auto aspect-[4/3] w-full max-w-xl rounded-3xl border border-border object-cover shadow-sm"
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              width={brandLogoWidth}
-              height={brandLogoHeight}
+              width={heroImage.width}
+              height={heroImage.height}
             />
-          </div>
+          ) : (
+            <HeroIllustration className="mx-auto w-full max-w-xl" />
+          )}
         </motion.div>
       </div>
     </section>

@@ -23,9 +23,21 @@ export const en = {
     title: 'MSA Online | Jobs & Career Opportunities',
     description:
       'MSA Online helps individuals discover job opportunities and build professional CVs for their career journey.',
+    aboutTitle: 'About Us | MSA Online',
+    aboutDescription:
+      'Learn about MSA Online — a career and recruitment platform connecting job seekers and business owners.',
     contactTitle: 'Build Your Professional CV | MSA Online',
     contactDescription:
       'Build a professional CV with MSA Online and reach employers directly. Get in touch through Instagram, WhatsApp, or email.',
+    privacyTitle: 'Privacy Policy | MSA Online',
+    privacyDescription:
+      'How MSA Online handles information when you use this website or contact us directly.',
+    termsTitle: 'Terms of Use | MSA Online',
+    termsDescription:
+      'The terms governing your use of the MSA Online website and services.',
+    jobPostingPolicyTitle: 'Job Posting Policy | MSA Online',
+    jobPostingPolicyDescription:
+      'The rules for job openings submitted to MSA Online for advertising on our platforms.',
     notFoundTitle: 'Page Not Found | MSA Online',
     notFoundDescription:
       'The page you are looking for does not exist. Return to MSA Online to discover job opportunities and build your professional CV.',
@@ -36,6 +48,7 @@ export const en = {
     home: 'Home',
     about: 'About',
     jobs: 'Jobs',
+    employers: 'Employers',
     buildCv: 'Build Your CV',
     contact: 'Contact',
     openMenu: 'Open menu',
@@ -66,8 +79,11 @@ export const en = {
     heading: 'Discover Opportunities. Build Your Future.',
     description:
       'Explore career opportunities and get professional support to build a strong CV that helps you move closer to your next opportunity.',
+    audience:
+      'We help job seekers and business owners connect with suitable career opportunities faster and more easily.',
     viewJobs: 'View Jobs',
     buildCv: 'Build Your CV',
+    imageAlt: 'A professional exploring career opportunities with MSA Online',
   },
 
   about: {
@@ -93,11 +109,70 @@ export const en = {
     },
   },
 
+  // About Us page (/about).
+  aboutPage: {
+    label: 'About Us',
+    title: 'About MSA Online',
+    intro:
+      'MSA Online is a career and recruitment platform focused on connecting people with opportunities. We help job seekers present themselves professionally, and we help business owners reach an audience that is actively looking for work.',
+    missionTitle: 'Our mission',
+    mission:
+      'To make it faster and easier for job seekers and business owners to find each other, by combining career content, professional CV support, and a reachable audience on Instagram and WhatsApp.',
+    whoTitle: 'Who we help',
+    seekersTitle: 'Job seekers',
+    seekersDescription:
+      'Discover job openings, get career guidance, and build a professional CV that presents your experience clearly.',
+    employersTitle: 'Business owners',
+    employersDescription:
+      'Advertise your job opening to an audience interested in employment and reach candidates who are ready to apply.',
+    offerTitle: 'What we offer',
+    offer: {
+      jobs: {
+        title: 'Job opportunities',
+        description:
+          'The latest openings are announced on our Instagram page, with new posts added regularly.',
+      },
+      cv: {
+        title: 'Professional CV building',
+        description:
+          'Personal support to structure and refine your CV so it makes a strong impression.',
+      },
+      advertising: {
+        title: 'Job advertising for employers',
+        description:
+          'Publish your vacancy to our audience and connect with suitable candidates faster.',
+      },
+    },
+    cta: 'Contact us on WhatsApp',
+  },
+
   jobs: {
-    title: 'Explore Job Opportunities',
+    title: 'Latest Job Openings',
+    description: 'Follow the latest job openings on Instagram.',
+    exploreCta: 'Explore Jobs on Instagram',
+  },
+
+  employers: {
+    label: 'For Employers',
+    title: 'Looking for employees?',
     description:
-      'Discover the latest career opportunities through MSA Online on Instagram.',
-    exploreCta: 'Explore Jobs',
+      'Advertise your job opening to an audience interested in employment via the MSA Online platform.',
+    cta: 'Post a Job',
+    note: 'Send us the details on WhatsApp and we will publish your opening to our audience on Instagram.',
+  },
+
+  // Pre-written WhatsApp messages, appended to the wa.me link as ?text=.
+  whatsapp: {
+    cvMessage:
+      'Hello, I would like to create a professional CV. Please provide details and pricing.',
+    jobMessage:
+      'Hello, I would like to advertise a job vacancy through MSA Online. Please provide me with the details and pricing.',
+    generalMessage: 'Hello, I would like to ask about MSA Online services.',
+  },
+
+  // Persistent floating action button (all pages).
+  floating: {
+    contactWhatsApp: 'Contact us via WhatsApp',
   },
 
   cv: {
@@ -149,7 +224,114 @@ export const en = {
   footer: {
     explore: 'Explore',
     contact: 'Contact',
+    pages: 'Pages',
     rights: 'All rights reserved.',
+  },
+
+  // Legal pages. These are DRAFT scaffolding — see `legal.draftNotice`. The
+  // content is intentionally generic and must be reviewed/completed by the
+  // owner (ideally with legal advice) before it is relied upon.
+  legal: {
+    label: 'Legal',
+    draftNotice: {
+      title: 'Draft content — not reviewed',
+      body: 'This page is a starting template provided for convenience. It is not legal advice and has not been reviewed by a legal professional. Replace it with your finalised policy before relying on it.',
+    },
+    lastUpdatedLabel: 'Last updated',
+    lastUpdated: 'To be set',
+    privacy: {
+      title: 'Privacy Policy',
+      intro:
+        'This policy explains how MSA Online handles information when you use this website or contact us directly.',
+      sections: [
+        {
+          title: 'Information we collect',
+          body: 'This website does not have accounts, forms, or a database, and it does not collect personal information automatically. We only receive information that you choose to send us when you contact us by WhatsApp, Instagram, or email.',
+        },
+        {
+          title: 'How we use information',
+          body: 'Information you send is used only to respond to your enquiry and to provide the services you request, such as building a CV or advertising a job opening.',
+        },
+        {
+          title: 'Sharing',
+          body: 'We do not sell your information. Information may be shared with third-party platforms (such as WhatsApp, Instagram, or email providers) only as needed to communicate with you.',
+        },
+        {
+          title: 'Retention',
+          body: 'We keep information only for as long as needed for the purpose it was provided, or as required by law.',
+        },
+        {
+          title: 'Your rights',
+          body: 'You may ask us to access, correct, or delete the information you have sent us by contacting us through any of the channels listed on this site.',
+        },
+        {
+          title: 'Contact',
+          body: 'For any privacy question, contact us using the details in the footer of this website.',
+        },
+      ],
+    },
+    terms: {
+      title: 'Terms of Use',
+      intro:
+        'These terms govern your use of the MSA Online website. By using the site, you agree to them.',
+      sections: [
+        {
+          title: 'Acceptance of terms',
+          body: 'By accessing or using this website you agree to be bound by these terms. If you do not agree, please do not use the site.',
+        },
+        {
+          title: 'Use of the site',
+          body: 'You agree to use the site lawfully and not to misuse it, attempt to disrupt it, or use it for fraudulent purposes.',
+        },
+        {
+          title: 'Intellectual property',
+          body: 'The MSA Online name, logo, and site content are owned by MSA Online and may not be reused without permission.',
+        },
+        {
+          title: 'Third-party links',
+          body: 'The site links to external platforms such as Instagram and WhatsApp. We are not responsible for the content or practices of those platforms.',
+        },
+        {
+          title: 'Disclaimer',
+          body: 'The site is provided on an "as is" basis. We do not guarantee that job openings or other information will be complete, accurate, or always available.',
+        },
+        {
+          title: 'Changes',
+          body: 'We may update these terms from time to time. Continued use of the site after changes means you accept the updated terms.',
+        },
+      ],
+    },
+    jobPostingPolicy: {
+      title: 'Job Posting Policy',
+      intro:
+        'These rules apply to job openings submitted to MSA Online for advertising on our platforms.',
+      sections: [
+        {
+          title: 'Scope',
+          body: 'This policy covers job openings submitted by employers for publication through MSA Online, including posts on our Instagram page.',
+        },
+        {
+          title: 'Accuracy',
+          body: 'Employers must submit accurate, current information and must have genuine, available positions. Misleading openings will be removed.',
+        },
+        {
+          title: 'Prohibited content',
+          body: 'We do not accept discriminatory listings, requests for payment from applicants, pyramid or commission-only schemes presented as employment, or any unlawful content.',
+        },
+        {
+          title: 'Review',
+          body: 'All submissions are reviewed before publication. We may edit for clarity or refuse any submission at our discretion.',
+        },
+        {
+          title: 'Removal',
+          body: 'We may remove a posting at any time, including when a position is filled or when a submission breaches this policy.',
+        },
+        {
+          title: 'Contact',
+          body: 'To submit a job opening or ask about this policy, contact us through the channels listed on this site.',
+        },
+      ],
+    },
   },
 
   notFound: {
