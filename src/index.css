@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/*
+ * MSA Online theme system.
+ *
+ * Brand constants never change between themes. Semantic tokens
+ * (background / surface / content / …) resolve to runtime CSS variables that
+ * are swapped by the `data-theme` attribute on <html>. Components use the
+ * semantic Tailwind utilities (bg-background, bg-surface, text-content,
+ * text-heading, border-border, bg-primary, text-accent, …) — never raw hex.
+ */
+@theme {
+  /* Brand constants (identity — same in both themes) */
+  --color-brand: #000080;
+
+  /*
+   * Accent is theme-tuned rather than a single constant: #1697d4 only reaches
+   * 3.28:1 on white, which fails WCAG AA (4.5:1) for the accent-coloured body
+   * text, link labels and button text used across the UI. The light value
+   * keeps the exact same hue at a lower lightness (5.05:1 on white, 4.67:1 on
+   * the surface-2 tint); the dark value is unchanged and already passes on the
+   * dark surfaces. See the --accent runtime variables below.
+   */
+  --color-accent: var(--accent);
+
+  /* Semantic tokens → resolve to the active theme's variables */
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-content: var(--content);
+  --color-muted: var(--muted);
+  --color-heading: var(--heading);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent-soft: var(--accent-soft);
+}
+
+/* Light theme (default) */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --accent: #1176a5; /* same hue as #1697d4, darkened to pass WCAG AA */
+  --surface: #ffffff;
+  --surface-2: #f4f6fb;
+  --border: #e2e8f0;
+  --content: #333333;
+  --muted: #5b6472;
+  --heading: #000080;
+  --primary: #000080;
+  --primary-hover: #000066;
+  --accent-soft: #e7f4fb;
+}
+
+/* Dark theme — deep navy surfaces, not a plain inversion */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #070c18;
+  --accent: #1697d4; /* passes comfortably on the dark surfaces */
+  --surface: #101a2e;
+  --surface-2: #17223b;
+  --border: #27324c;
+  --content: #e6ebf5;
+  --muted: #9fabc0;
+  --heading: #eaf0fb;
+  --primary: #1c2b93;
+  --primary-hover: #26379f;
+  --accent-soft: rgba(22, 151, 212, 0.16);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-content);
+}
+
+/* Offset in-page anchor targets so sections aren't hidden under the
+   sticky navbar (works for both :target and programmatic scrolling). */
+:target,
+section[id],
+main[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Arabic typography: a slightly taller line height reads more naturally. */
+:lang(ar) {
+  line-height: 1.85;
+}
+
+/* Smooth, limited theme transition (colors only). */
+@media (prefers-reduced-motion: no-preference) {
+  *,
+  ::before,
+  ::after {
+    transition-property: background-color, border-color, color, fill, stroke,
+      box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
