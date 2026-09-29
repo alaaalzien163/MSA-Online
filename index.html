@@ -65,20 +65,13 @@
 
     <script>
       // Set the theme before first paint to avoid a light/dark flash.
-      // Priority: saved preference → system preference → light.
+      // Priority: saved preference → light. The OS (prefers-color-scheme)
+      // preference is deliberately ignored so the site always opens light.
       (function () {
         try {
           var key = 'msa-online-theme';
           var saved = localStorage.getItem(key);
-          var systemDark =
-            window.matchMedia &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches;
-          var theme =
-            saved === 'dark' || saved === 'light'
-              ? saved
-              : systemDark
-                ? 'dark'
-                : 'light';
+          var theme = saved === 'dark' || saved === 'light' ? saved : 'light';
           document.documentElement.setAttribute('data-theme', theme);
           // Match browser chrome to the theme chosen before first paint.
           var meta = document.querySelector('meta[name="theme-color"]');
